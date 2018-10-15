@@ -2,6 +2,7 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
+import controller.MouseAdapter;
 import model.dialogs.DialogProvider;
 import model.interfaces.IDialogProvider;
 import model.persistence.ApplicationState;
@@ -22,6 +23,12 @@ public class Main {
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
+
+        // create new instance of MouseAdapter class
+        MouseAdapter mouseAdapter = new MouseAdapter();
+
+        // add the MouseAdapter class object to the Paint Canvas via addMouseListener()
+        paintCanvas.addMouseListener(mouseAdapter);
 
         controller.setup();
 

@@ -3,26 +3,31 @@ import model.interfaces.IShapeCommand;
 
 import java.awt.*;
 
-public class CreateRectangleCommand extends ShapeList implements IShapeCommand {
+public class CreateRectangleCommand implements IShapeCommand {
 
-    private static int x, y, width, height;
-    private Point startPoint;
-    private Point endPoint;
+    public Point startPoint;
+    public Point endPoint;
+    public ShapeList shapelist;
 
 
-    public CreateRectangleCommand(Point startPoint, Point endPoint) {
+    public CreateRectangleCommand(ShapeList shapelist, Point startPoint, Point endPoint) {
+        this.shapelist = shapelist;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
     }
 
     public void run() {
         // add builder pattern here??
+        /*
         x = startPoint.x;
         y = endPoint.y;
-        width = startPoint.x - endPoint.x;
-        height = startPoint.y - endPoint.y;
         Rectangle rectangle = new Rectangle(x,y,width,height);
-        ShapeList.add(rectangle);
+        width = endPoint.x-startPoint.x;
+        height = endPoint.y-startPoint.y;
+         */
+
+        Shape rectangle = new Shape(startPoint, endPoint);
+        shapelist.add(rectangle);
     }
 
 }

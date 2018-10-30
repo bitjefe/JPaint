@@ -1,6 +1,7 @@
 package controller;
 
 import model.CreateRectangleCommand;
+import model.ShapeList;
 import model.interfaces.IApplicationState;
 import view.gui.PaintCanvas;
 import model.ShapeType;
@@ -11,11 +12,12 @@ import java.awt.event.MouseEvent;
 
 public class MouseAdapter extends JPanel implements MouseListener {
 
-    private IApplicationState applicationState;
-    private ShapeType shapeType;
-    private PaintCanvas paintCanvas;
-    private Point startPoint;
-    private Point endPoint;
+    public IApplicationState applicationState;
+    public ShapeType shapeType;
+    public PaintCanvas paintCanvas;
+    public Point startPoint;
+    public Point endPoint;
+    public ShapeList shapelist;
 
 
     public MouseAdapter(IApplicationState applicationState) {
@@ -38,7 +40,7 @@ public class MouseAdapter extends JPanel implements MouseListener {
 
         if (shapeType.toString().equals("RECTANGLE")) {
 
-            CreateRectangleCommand createRectangleCommand = new CreateRectangleCommand(startPoint, endPoint);
+            CreateRectangleCommand createRectangleCommand = new CreateRectangleCommand(shapelist, startPoint, endPoint);
             createRectangleCommand.run();
 
             System.out.println(startPoint.toString());

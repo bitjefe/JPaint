@@ -1,9 +1,18 @@
 package model;
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
-public class ShapeList extends ArrayList<Shape> {
+public class ShapeList {
 
-    ArrayList ShapeList = new ArrayList();
+    DrawShapeHandler drawShapeHandler;
+
+    ArrayList<Shape> ShapeList = new ArrayList<>();
+
+    public ShapeList(DrawShapeHandler drawShapeHandler){
+        this.drawShapeHandler = drawShapeHandler;
+    }
+
+    public void add(Shape shape){
+        ShapeList.add(shape);
+        drawShapeHandler.update(ShapeList);
+    }
 }

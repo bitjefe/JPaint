@@ -1,11 +1,9 @@
 package main;
 
-import controller.DrawShapeHandler;
 import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MouseAdapter;
-import model.dialogs.DialogProvider;
-import model.interfaces.IDialogProvider;
+import model.DrawShapeHandler;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -14,8 +12,7 @@ import view.interfaces.IGuiWindow;
 import view.interfaces.IUiModule;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 import model.ShapeList;
 
 public class Main {
@@ -29,14 +26,10 @@ public class Main {
         // create new instance of MouseAdapter class
         MouseAdapter mouseAdapter = new MouseAdapter(appState);
 
+        ShapeList shapeList = new ShapeList(new DrawShapeHandler(paintCanvas));
+
         // add the MouseAdapter class object to the Paint Canvas via addMouseListener()
         paintCanvas.addMouseListener(mouseAdapter);
-
-        ShapeList shapeList = new ShapeList();
-
-        DrawShapeHandler drawShapeHandler = new DrawShapeHandler(paintCanvas);
-
-        drawShapeHandler.update(shapeList);
 
 
         controller.setup();

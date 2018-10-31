@@ -3,16 +3,23 @@ import java.util.ArrayList;
 
 public class ShapeList {
 
-    DrawShapeHandler drawShapeHandler;
+    public DrawShapeHandler drawShapeHandler;
 
-    ArrayList<Shape> ShapeList = new ArrayList<>();
+    public ArrayList<Shape> shapeList = new ArrayList<>();
 
     public ShapeList(DrawShapeHandler drawShapeHandler){
         this.drawShapeHandler = drawShapeHandler;
     }
 
     public void add(Shape shape){
-        ShapeList.add(shape);
-        drawShapeHandler.update(ShapeList);
+
+        if(shape == null){
+            System.out.println("error in ShapeList");
+        }
+        else {
+            shapeList.add(shape);
+            drawShapeHandler.update(shapeList);
+        }
+
     }
 }

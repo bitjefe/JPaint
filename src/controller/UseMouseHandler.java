@@ -3,27 +3,23 @@ package controller;
 import model.CreateRectangleCommand;
 import model.ShapeList;
 import model.interfaces.IApplicationState;
-import view.gui.PaintCanvas;
 import model.ShapeType;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MouseAdapter extends JPanel implements MouseListener {
+public class UseMouseHandler extends MouseAdapter {
 
     public IApplicationState applicationState;
     public ShapeType shapeType;
-    public PaintCanvas paintCanvas;
     public Point startPoint;
     public Point endPoint;
-    public ShapeList shapelist;
+    public ShapeList shapeList;
 
 
-    public MouseAdapter(IApplicationState applicationState) {
-        paintCanvas = new PaintCanvas();
-        paintCanvas.addMouseListener(this);
+    public UseMouseHandler(IApplicationState applicationState, ShapeList shapeList) {
         this.applicationState = applicationState;
+        this.shapeList = shapeList;
     }
 
     public void mousePressed(MouseEvent e) {
@@ -40,12 +36,8 @@ public class MouseAdapter extends JPanel implements MouseListener {
 
         if (shapeType.toString().equals("RECTANGLE")) {
 
-            CreateRectangleCommand createRectangleCommand = new CreateRectangleCommand(shapelist, startPoint, endPoint);
+            CreateRectangleCommand createRectangleCommand = new CreateRectangleCommand(shapeList, shapeType, startPoint, endPoint);
             createRectangleCommand.run();
-
-            System.out.println(startPoint.toString());
-            System.out.println(endPoint.toString());
-            System.out.println(shapeType.toString());
 
         } else if (shapeType.toString().equals("ELLIPSE")) {
             System.out.println(startPoint.toString());

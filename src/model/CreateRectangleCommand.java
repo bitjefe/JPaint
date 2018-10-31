@@ -7,13 +7,15 @@ public class CreateRectangleCommand implements IShapeCommand {
 
     public Point startPoint;
     public Point endPoint;
-    public ShapeList shapelist;
+    public ShapeType shapeType;
+    public ShapeList shapeList;
 
 
-    public CreateRectangleCommand(ShapeList shapelist, Point startPoint, Point endPoint) {
-        this.shapelist = shapelist;
+    public CreateRectangleCommand(ShapeList shapeList, ShapeType shapeType, Point startPoint, Point endPoint) {
+        this.shapeType = shapeType;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
+        this.shapeList = shapeList;
     }
 
     public void run() {
@@ -26,8 +28,12 @@ public class CreateRectangleCommand implements IShapeCommand {
         height = endPoint.y-startPoint.y;
          */
 
+        System.out.println(startPoint.toString());
+        System.out.println(endPoint.toString());
+        System.out.println(shapeType.toString());
+
         Shape rectangle = new Shape(startPoint, endPoint);
-        shapelist.add(rectangle);
+        shapeList.add(rectangle);
     }
 
 }

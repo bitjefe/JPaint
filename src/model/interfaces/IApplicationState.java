@@ -16,6 +16,8 @@ public interface IApplicationState {
 
     void setActiveStartAndEndPointMode();
 
+    //add DeleteCommand(), CopyCommand(), PasteCommand(), UndoCommand(), RedoCommand() here
+
     ShapeType getActiveShapeType();
 
     ShapeColor getActivePrimaryColor();

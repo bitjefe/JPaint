@@ -1,12 +1,13 @@
 package controller;
 
-import model.CreateRectangleCommand;
+import model.CreateShapeCommand;
 import model.ShapeList;
 import model.interfaces.IApplicationState;
 import model.ShapeType;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.EventName;
 
 public class UseMouseHandler extends MouseAdapter {
 
@@ -22,36 +23,16 @@ public class UseMouseHandler extends MouseAdapter {
         this.shapeList = shapeList;
     }
 
-    public void mousePressed(MouseEvent e) {
-        startPoint = new Point(e.getX(), e.getY());
-    }
+    public void mousePressed(MouseEvent e) { startPoint = new Point(e.getX(), e.getY()); }
 
     public void mouseReleased(MouseEvent e) {
         shapeType = applicationState.getActiveShapeType();
 
-
         Point endPoint = new Point(e.getX(), e.getY());
         this.endPoint = endPoint;
 
-
-        if (shapeType.toString().equals("RECTANGLE")) {
-
-            CreateRectangleCommand createRectangleCommand = new CreateRectangleCommand(shapeList, shapeType, startPoint, endPoint);
-            createRectangleCommand.run();
-
-        } else if (shapeType.toString().equals("ELLIPSE")) {
-            System.out.println(startPoint.toString());
-            System.out.println(endPoint.toString());
-            System.out.println(shapeType.toString());
-            //CreateEllipseCommand ellipseCommand = new CreateEllipseCommand(startPoint, endPoint);
-
-        } else if (shapeType.toString().equals("TRIANGLE")){
-            System.out.println(startPoint.toString());
-            System.out.println(endPoint.toString());
-            System.out.println(shapeType.toString());
-            //CreateTriangleCommand triangleCommand = new CreateTriangleCommand(startPoint, endPoint);
-        }
-
+        CreateShapeCommand createShapeCommand = new CreateShapeCommand(shapeList, shapeType, startPoint, endPoint);
+        createShapeCommand.run();
     }
 
     public void mouseEntered(MouseEvent e) {

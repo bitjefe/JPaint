@@ -16,7 +16,13 @@ public interface IApplicationState {
 
     void setActiveStartAndEndPointMode();
 
+
     //add DeleteCommand(), CopyCommand(), PasteCommand(), UndoCommand(), RedoCommand() here
+    void CopyCommand();
+    void DeleteCommand();
+    void PasteCommand();
+    void UndoCommand();
+    void RedoCommand();
 
     ShapeType getActiveShapeType();
 
@@ -27,4 +33,7 @@ public interface IApplicationState {
     ShapeShadingType getActiveShapeShadingType();
 
     StartAndEndPointMode getActiveStartAndEndPointMode();
+
+
+
 }

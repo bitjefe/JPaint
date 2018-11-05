@@ -1,9 +1,6 @@
 package model.persistence;
 
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
-import model.StartAndEndPointMode;
+import model.*;
 import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
@@ -52,6 +49,22 @@ public class ApplicationState implements IApplicationState, Serializable {
     public void setActiveStartAndEndPointMode() {
         activeStartAndEndPointMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
     }
+
+    @Override
+    public void CopyCommand() { System.out.println("copy button works!"); }   // how to call CopyCommand here??
+
+    @Override
+    public void DeleteCommand() { System.out.println("delete button works!"); }
+
+    @Override
+    public void PasteCommand() { System.out.println("Paste button works!"); }
+
+    @Override
+    public void UndoCommand() { System.out.println("Undo button works!"); }
+
+    @Override
+    public void RedoCommand() { System.out.println("Redo button works!"); }
+
 
     @Override
     public ShapeType getActiveShapeType() {

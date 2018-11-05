@@ -1,20 +1,20 @@
 package model;
+import model.interfaces.IApplicationState;
 import model.interfaces.IShapeCommand;
-import model.persistence.ApplicationState;
 
 import java.awt.*;
 
 public class CreateShapeCommand implements IShapeCommand {
 
+    public IApplicationState appState;
     public Point startPoint;
     public Point endPoint;
     public ShapeType shapeType;
     public ShapeList shapeList;
+    public Shape shape;
 
-    //public Shape shape;
-
-
-    public CreateShapeCommand(ShapeList shapeList, ShapeType shapeType, Point startPoint, Point endPoint) {
+    public CreateShapeCommand(IApplicationState appState, ShapeList shapeList, ShapeType shapeType, Point startPoint, Point endPoint) {
+        this.appState = appState;
         this.shapeType = shapeType;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -22,14 +22,18 @@ public class CreateShapeCommand implements IShapeCommand {
     }
 
     public void run() {
-        Shape shape = new Shape(shapeType, startPoint, endPoint);
+        Shape shape = new Shape(appState, shapeType, startPoint, endPoint);
         shapeList.add(shape);
     }
 
-   /* public void undo(){
+    public void undo(){
         shapeList.remove(shape);
+        //call UndoCommand here?
     }
-    */
+
+    public void redo(){
+
+    }
 }
 
 

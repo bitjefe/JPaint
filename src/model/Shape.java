@@ -1,15 +1,20 @@
 package model;
 
+import model.interfaces.IApplicationState;
+
 import java.awt.Point;
+import java.awt.Color;
 
 public class Shape {
+    public IApplicationState appState;
     public ShapeType shapeType;
     public Point startPoint;
     public Point endPoint;
     public int height, width;
     public int xMin, xMax, yMin, yMax, triangleMidPoint;
 
-    public Shape(ShapeType shapeType, Point startPoint, Point endPoint){
+    public Shape(IApplicationState appState, ShapeType shapeType, Point startPoint, Point endPoint){
+        this.appState = appState;
         this.shapeType = shapeType;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -23,13 +28,10 @@ public class Shape {
         width = xMax-xMin;
         height = yMax-yMin;
         triangleMidPoint = (xMin)+((xMax-xMin)/2);
+
     }
 
     public ShapeType getShapeType() {return shapeType;}
-
-    public Point getStartPoint(){ return startPoint; }
-
-    public Point getEndPoint(){ return endPoint; }
 
     public int getXMax(){ return xMax;}
 
@@ -44,4 +46,13 @@ public class Shape {
     public int getWidth(){ return width; }
 
     public int getTriangleMidPoint(){ return triangleMidPoint;}
+
+    public ShapeColor getPrimaryColor(){return appState.getActivePrimaryColor();}
+
+    public ShapeColor getSecondaryColor(){return appState.getActiveSecondaryColor();}
+
+    public ShapeShadingType getShadingType(){return appState.getActiveShapeShadingType();}
+
+    public StartAndEndPointMode getStartAndEndPointMode(){return appState.getActiveStartAndEndPointMode();}
+
 }

@@ -46,7 +46,5 @@ public class DialogProvider implements IDialogProvider {
     }
 
     @Override
-    public IDialogChoice<StartAndEndPointMode> getChooseStartAndEndPointModeDialog() {
-        return chooseStartAndEndPointModeDialog;
-    }
+    public IDialogChoice<StartAndEndPointMode> getChooseStartAndEndPointModeDialog() { return chooseStartAndEndPointModeDialog; }
 }

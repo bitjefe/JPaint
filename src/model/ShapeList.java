@@ -7,9 +7,9 @@ import java.util.concurrent.PriorityBlockingQueue;
 public class ShapeList{
 
     public DrawShapeHandler drawShapeHandler;
+    public Shape shape;
 
     public List<Shape> shapeList = new ArrayList<>();
-    public Shape getShapeIndex;
 
     public ShapeList(DrawShapeHandler drawShapeHandler){
         this.drawShapeHandler = drawShapeHandler;
@@ -20,21 +20,18 @@ public class ShapeList{
         drawShapeHandler.update(shapeList);
     }
 
-    public void remove(Shape shape){
-        shapeList.remove(shape);
+    public void remove(){
+        shapeList.remove(shapeList.size()-1);
         drawShapeHandler.update(shapeList);
     }
 
+
     public int size(){
-        int counter = 0;
-        for(Shape shape:shapeList){
+        int counter =0;
+        for(Shape shape: shapeList){
             counter++;
         }
         return counter;
-    }
-
-    public Shape getShapeIndex(int index){
-        return this.shapeList.get(index);
     }
 
 }

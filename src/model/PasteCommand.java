@@ -7,11 +7,11 @@ import java.util.List;
 
 public class PasteCommand implements IJPaintController {
 
-    public List<Shape> shapeList;
+    public ShapeList shapeList;
     public List<Shape> shapeListCopy;
 
-    public PasteCommand(ShapeList shapeListCopy){
-        this.shapeListCopy = (List<Shape>) shapeListCopy;
+    public PasteCommand(List<Shape> shapeListCopy){
+        this.shapeListCopy = shapeListCopy;
     }
 
     @Override
@@ -30,6 +30,6 @@ public class PasteCommand implements IJPaintController {
             shapeList.add(shape);
         }
 
-        System.out.println("CopyCommand function works");
+        System.out.println("PasteCommand function works");
     }
 }

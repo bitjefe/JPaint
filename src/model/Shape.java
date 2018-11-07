@@ -3,9 +3,9 @@ package model;
 import model.interfaces.IApplicationState;
 
 import java.awt.Point;
-import java.awt.Color;
 
 public class Shape {
+    public ShapeFactory shapeFactory;
     public IApplicationState appState;
     public ShapeType shapeType;
     public Point startPoint;
@@ -13,9 +13,9 @@ public class Shape {
     public int height, width;
     public int xMin, xMax, yMin, yMax, triangleMidPoint;
 
-    public Shape(IApplicationState appState, ShapeType shapeType, Point startPoint, Point endPoint){
-        this.appState = appState;
-        this.shapeType = shapeType;
+
+    public Shape(ShapeFactory shapeFactory, Point startPoint, Point endPoint) {
+        this.shapeFactory = shapeFactory;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
 
@@ -28,10 +28,9 @@ public class Shape {
         width = xMax-xMin;
         height = yMax-yMin;
         triangleMidPoint = (xMin)+((xMax-xMin)/2);
-
     }
 
-    public ShapeType getShapeType() {return shapeType;}
+    public ShapeType getShapeType() {return shapeFactory.appState.getActiveShapeType();}
 
     public int getXMax(){ return xMax;}
 
@@ -56,3 +55,24 @@ public class Shape {
     public StartAndEndPointMode getStartAndEndPointMode(){return appState.getActiveStartAndEndPointMode();}
 
 }
+
+
+
+    /*
+    public Shape(IApplicationState appState, ShapeType shapeType, Point startPoint, Point endPoint){
+        this.appState = appState;
+        this.shapeType = shapeType;
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+
+        xMin = Math.min(startPoint.x, endPoint.x);
+        xMax = Math.max(startPoint.x, endPoint.x);
+
+        yMin = Math.min(startPoint.y, endPoint.y);
+        yMax = Math.max(startPoint.y, endPoint.y);
+
+        width = xMax-xMin;
+        height = yMax-yMin;
+        triangleMidPoint = (xMin)+((xMax-xMin)/2);
+    }
+    */

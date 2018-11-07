@@ -51,25 +51,23 @@ public class ApplicationState implements IApplicationState, Serializable {
     }
 
     @Override
-    public void CopyCommand() { System.out.println("copy button works!"); }   // how to call CopyCommand here??
+    public void CopyCommand() { }   // should anything go here?
 
     @Override
-    public void DeleteCommand() { System.out.println("delete button works!"); }
+    public void DeleteCommand() { }
 
     @Override
-    public void PasteCommand() { System.out.println("Paste button works!"); }
+    public void PasteCommand() { }
 
     @Override
-    public void UndoCommand() { System.out.println("Undo button works!"); }
+    public void UndoCommand() { }
 
     @Override
-    public void RedoCommand() { System.out.println("Redo button works!"); }
+    public void RedoCommand() { }
 
 
     @Override
-    public ShapeType getActiveShapeType() {
-        return activeShapeType;
-    }
+    public ShapeType getActiveShapeType() { return activeShapeType; }
 
     @Override
     public ShapeColor getActivePrimaryColor() {

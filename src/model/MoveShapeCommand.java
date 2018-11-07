@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.awt.Point;
 import java.util.List;
 
-public class MoveCommand implements IShapeCommand {
+public class MoveShapeCommand implements IShapeCommand {
 
     public Point newStartPoint;
     public Point newEndPoint;
     public ShapeList shapeList;
-    public List<Shape> selectedShapeList = new ArrayList<>();
+    public List<Shape> selectedShapeList;
 
 
-    public MoveCommand(ShapeList shapeList, List<Shape> selectedShapeList, Point newStartPoint, Point newEndPoint){
+    public MoveShapeCommand(ShapeList shapeList, List<Shape> selectedShapeList, Point newStartPoint, Point newEndPoint){
         this.shapeList = shapeList;
         this.selectedShapeList = selectedShapeList;
         this.newStartPoint = newStartPoint;
@@ -24,6 +24,7 @@ public class MoveCommand implements IShapeCommand {
     @Override
     public void run() {
         move();
+
         // how to get this redraw the shapes?
     }
 

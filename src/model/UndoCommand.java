@@ -7,18 +7,12 @@ import model.interfaces.IShapeCommand;
 
 public class UndoCommand implements IJPaintController {
 
-    public IApplicationState appState;
-    public ShapeList shapeList;
-
-    public UndoCommand(IApplicationState appState, ShapeList shapeList){
-        this.appState = appState;
-        this.shapeList = shapeList;
+    public UndoCommand(){
     }
 
     @Override
     public void setup() {
-        //shapeList.remove(Shape);
+        //shapeList.remove(Shape);  // what is this supposed to do?
     }
-
 
 }

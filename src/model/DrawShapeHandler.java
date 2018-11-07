@@ -6,6 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.util.EnumMap;
 import java.awt.Color;
 import java.util.List;
+import java.awt.Graphics2D;
 
 
 public class DrawShapeHandler {
@@ -18,29 +19,39 @@ public class DrawShapeHandler {
     }
 
     public void update(List<Shape> shapeList) {
+
+        System.out.println("shapeList has this many shapes added = "+ shapeList.size());
+        Graphics2D graphics = paintCanvas.getGraphics2D();
+
         for(Shape shape: shapeList){
 
             if(shape.getShapeType().toString().equals("RECTANGLE")){
 
                 EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
                 colorMap.put(ShapeColor.BLUE, Color.BLUE);
-                activeColorMapped = colorMap.get(ShapeColor.BLUE);
 
+                //this always returns a null pointer exception
+
+                /*ColorSingleton colorSingleton = ColorSingleton.getInstance(shape.getPrimaryColor());
+                activeColorMapped = colorSingleton.getEnum().get(ShapeColor.BLUE);
+                */
+
+                activeColorMapped = colorMap.get(ShapeColor.BLUE);
                 System.out.println(activeColorMapped);
 
-                paintCanvas.getGraphics2D().setColor(activeColorMapped);
-                paintCanvas.getGraphics2D().drawRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
+                graphics.setColor(activeColorMapped);
+                graphics.drawRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
 
             }
             else if(shape.getShapeType().toString().equals("ELLIPSE")) {
-                paintCanvas.getGraphics2D().draw(new Ellipse2D.Double(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight()));
+                graphics.draw(new Ellipse2D.Double(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight()));
             }
             else if(shape.getShapeType().toString().equals("TRIANGLE")) {
 
                 int[] xCords = {shape.getXMin(), shape.getTriangleMidPoint(), shape.getXMax()};
                 int[] yCords = {shape.getYMax(), shape.getYMin(), shape.getYMax() };
 
-                paintCanvas.getGraphics2D().drawPolygon(xCords, yCords, 3);
+                graphics.drawPolygon(xCords, yCords, 3);
             }
             else{
                 System.out.println("Something went wrong");

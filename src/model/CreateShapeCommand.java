@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class CreateShapeCommand implements IShapeCommand {
 
+    public ShapeFactory shapeFactory;
     public IApplicationState appState;
     public Point startPoint;
     public Point endPoint;
@@ -13,6 +14,7 @@ public class CreateShapeCommand implements IShapeCommand {
     public ShapeList shapeList;
     public Shape shape;
 
+    /*
     public CreateShapeCommand(IApplicationState appState, ShapeList shapeList, ShapeType shapeType, Point startPoint, Point endPoint) {
         this.appState = appState;
         this.shapeType = shapeType;
@@ -20,14 +22,28 @@ public class CreateShapeCommand implements IShapeCommand {
         this.endPoint = endPoint;
         this.shapeList = shapeList;
     }
+    */
 
+    public CreateShapeCommand(ShapeFactory shapeFactory, Point startPoint, Point endPoint) {
+        this.shapeFactory = shapeFactory;
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+    }
+
+    public void run() {
+        Shape shape = new Shape(shapeFactory, startPoint, endPoint);
+        shapeFactory.getShapeList().add(shape);
+    }
+
+    /*
     public void run() {
         Shape shape = new Shape(appState, shapeType, startPoint, endPoint);
         shapeList.add(shape);
     }
+    */
 
     public void undo(){
-        shapeList.remove(shape);
+        shapeList.remove();
         //call UndoCommand here?
     }
 

@@ -31,9 +31,8 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState,shapeList, selectedShapeList);
 
         //create concrete implementation of factory interface, pass in appState and ShapeList
-        ShapeFactory shapeFactory = new ShapeFactory();
-        shapeFactory.makeShape(appState, shapeList, selectedShapeList);
-        UseMouseHandler useMouseHandler = new UseMouseHandler(shapeFactory);   //when refactored like this it draws all shapes in the shapeList every time for the new shape
+        ShapeFactory shapeFactory = new ShapeFactory(appState, shapeList, selectedShapeList);
+        UseMouseHandler useMouseHandler = new UseMouseHandler(shapeFactory, shapeList);   //when refactored like this it draws all shapes in the shapeList every time for the new shape
 
         // create new instance of UseMouseHandler class
         //UseMouseHandler useMouseHandler = new UseMouseHandler(appState, shapeList);

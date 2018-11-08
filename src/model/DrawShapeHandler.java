@@ -12,7 +12,8 @@ import java.awt.Graphics2D;
 public class DrawShapeHandler {
 
     public PaintCanvas paintCanvas;
-    public Color activeColorMapped;
+    public Color primaryColorMapped;
+    public Color secondaryColorMapped;
 
     public DrawShapeHandler(PaintCanvas paintCanvas){
         this.paintCanvas = paintCanvas;
@@ -27,20 +28,25 @@ public class DrawShapeHandler {
 
             if(shape.getShapeType().toString().equals("RECTANGLE")){
 
+
+                //this prints the statement in the ShapeFactory! now what to replace from here to there?
+                //shape.shapeFactory.createRectangle();
+
                 EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
-                colorMap.put(ShapeColor.BLUE, Color.BLUE);
+                ColorSingleton colorSingletonPrimary = ColorSingleton.getInstance(shape.getPrimaryColor(), colorMap);
+                ColorSingleton colorSingletonSecondary = ColorSingleton.getInstance(shape.getSecondaryColor(), colorMap);
 
-                //this always returns a null pointer exception
+                primaryColorMapped = colorMap.get(shape.getPrimaryColor());
+                secondaryColorMapped = colorMap.get(shape.getSecondaryColor());
 
-                /*ColorSingleton colorSingleton = ColorSingleton.getInstance(shape.getPrimaryColor());
-                activeColorMapped = colorSingleton.getEnum().get(ShapeColor.BLUE);
-                */
+                graphics.setColor(primaryColorMapped);
+                graphics.fillRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
 
-                activeColorMapped = colorMap.get(ShapeColor.BLUE);
-                System.out.println(activeColorMapped);
-
-                graphics.setColor(activeColorMapped);
+                graphics.setColor(secondaryColorMapped);
                 graphics.drawRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
+
+
+                //notes for Thursday night... will only draw colors on the first rectangle.. if i resize canvas the rectangles turn full black?
 
             }
             else if(shape.getShapeType().toString().equals("ELLIPSE")) {

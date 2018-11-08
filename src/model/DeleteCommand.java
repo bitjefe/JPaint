@@ -16,6 +16,8 @@ public class DeleteCommand implements IJPaintController {
         this.shapeList = shapeList;
     }
 
+    //doesn't update the canvas until you click on canvas again, but it does remove the shapes from shapeList
+
     @Override
     public void setup() {
         System.out.println("delete button has been clicked!");

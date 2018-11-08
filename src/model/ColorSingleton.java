@@ -9,33 +9,29 @@ public class ColorSingleton {
     public EnumMap<ShapeColor, Color> colorMap;
     public ShapeColor shapeColor;
 
-    public ColorSingleton(ShapeColor shapeColor ) {
+    public ColorSingleton(ShapeColor shapeColor, EnumMap<ShapeColor, Color> colorMap) {
 
         this.shapeColor = shapeColor;
-        EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
-        colorMap.put(ShapeColor.BLACK, Color.BLACK);
-        colorMap.put(ShapeColor.BLUE, Color.BLUE);
-        colorMap.put(ShapeColor.CYAN, Color.CYAN);
-        colorMap.put(ShapeColor.DARK_GRAY, Color.DARK_GRAY);
-        colorMap.put(ShapeColor.GRAY, Color.GRAY);
-        colorMap.put(ShapeColor.GREEN, Color.GREEN);
-        colorMap.put(ShapeColor.LIGHT_GRAY, Color.LIGHT_GRAY);
-        colorMap.put(ShapeColor.MAGENTA, Color.MAGENTA);
-        colorMap.put(ShapeColor.ORANGE, Color.ORANGE);
-        colorMap.put(ShapeColor.PINK, Color.PINK);
-        colorMap.put(ShapeColor.RED, Color.RED);
-        colorMap.put(ShapeColor.WHITE, Color.WHITE);
-        colorMap.put(ShapeColor.YELLOW, Color.YELLOW);
+        this.colorMap = colorMap;
+        this.colorMap.put(ShapeColor.BLACK, Color.BLACK);
+        this.colorMap.put(ShapeColor.BLUE, Color.BLUE);
+        this.colorMap.put(ShapeColor.CYAN, Color.CYAN);
+        this.colorMap.put(ShapeColor.DARK_GRAY, Color.DARK_GRAY);
+        this.colorMap.put(ShapeColor.GRAY, Color.GRAY);
+        this.colorMap.put(ShapeColor.GREEN, Color.GREEN);
+        this.colorMap.put(ShapeColor.LIGHT_GRAY, Color.LIGHT_GRAY);
+        this.colorMap.put(ShapeColor.MAGENTA, Color.MAGENTA);
+        this.colorMap.put(ShapeColor.ORANGE, Color.ORANGE);
+        this.colorMap.put(ShapeColor.PINK, Color.PINK);
+        this.colorMap.put(ShapeColor.RED, Color.RED);
+        this.colorMap.put(ShapeColor.WHITE, Color.WHITE);
+        this.colorMap.put(ShapeColor.YELLOW, Color.YELLOW);
     }
 
-    public EnumMap<ShapeColor,Color> getEnum(){
-        return colorMap;
-    }
-
-    public static ColorSingleton getInstance(ShapeColor shapeColor){
+    public static ColorSingleton getInstance(ShapeColor shapeColor,EnumMap<ShapeColor, Color>colorMap){
 
         if(single_instance == null){
-            single_instance = new ColorSingleton(shapeColor);
+            single_instance = new ColorSingleton(shapeColor, colorMap);
         }
         return single_instance;
     }

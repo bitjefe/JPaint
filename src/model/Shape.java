@@ -6,6 +6,7 @@ import java.awt.Point;
 
 public class Shape {
     public ShapeFactory shapeFactory;
+    public ShapeList shapeList;
     public IApplicationState appState;
     public ShapeType shapeType;
     public Point startPoint;
@@ -14,8 +15,9 @@ public class Shape {
     public int xMin, xMax, yMin, yMax, triangleMidPoint;
 
 
-    public Shape(ShapeFactory shapeFactory, Point startPoint, Point endPoint) {
+    public Shape(ShapeFactory shapeFactory, ShapeType shapeType, Point startPoint, Point endPoint) {
         this.shapeFactory = shapeFactory;
+        this.shapeType = shapeType;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
 
@@ -30,7 +32,7 @@ public class Shape {
         triangleMidPoint = (xMin)+((xMax-xMin)/2);
     }
 
-    public ShapeType getShapeType() {return shapeFactory.appState.getActiveShapeType();}
+    public ShapeType getShapeType(){ return shapeType;}
 
     public int getXMax(){ return xMax;}
 
@@ -46,13 +48,13 @@ public class Shape {
 
     public int getTriangleMidPoint(){ return triangleMidPoint;}
 
-    public ShapeColor getPrimaryColor(){return appState.getActivePrimaryColor();}
+    public ShapeColor getPrimaryColor(){return shapeFactory.appState.getActivePrimaryColor();}
 
-    public ShapeColor getSecondaryColor(){return appState.getActiveSecondaryColor();}
+    public ShapeColor getSecondaryColor(){return shapeFactory.appState.getActiveSecondaryColor();}
 
-    public ShapeShadingType getShadingType(){return appState.getActiveShapeShadingType();}
+    public ShapeShadingType getShadingType(){return shapeFactory.appState.getActiveShapeShadingType();}
 
-    public StartAndEndPointMode getStartAndEndPointMode(){return appState.getActiveStartAndEndPointMode();}
+    public StartAndEndPointMode getStartAndEndPointMode(){return shapeFactory.appState.getActiveStartAndEndPointMode();}
 
 }
 

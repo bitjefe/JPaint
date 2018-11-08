@@ -26,8 +26,9 @@ public class UseMouseHandler extends MouseAdapter {
     }
     */
 
-    public UseMouseHandler(ShapeFactory shapeFactory) {
+    public UseMouseHandler(ShapeFactory shapeFactory, ShapeList shapeList) {
         this.shapeFactory = shapeFactory;
+        this.shapeList = shapeList;
     }
 
     public void mousePressed(MouseEvent e) {
@@ -35,22 +36,21 @@ public class UseMouseHandler extends MouseAdapter {
     }
 
     public void mouseReleased(MouseEvent e) {
-        shapeType = shapeFactory.getAppState().getActiveShapeType();
-        System.out.println(shapeType);
+
+        shapeType = shapeFactory.appState.getActiveShapeType();
 
         Point endPoint = new Point(e.getX(), e.getY());
         this.endPoint = endPoint;
 
-
         IShapeCommand shapeCommand = null;
 
-        if(shapeFactory.getAppState().getActiveStartAndEndPointMode()== StartAndEndPointMode.DRAW) {
-            shapeCommand = new CreateShapeCommand(shapeFactory, startPoint, endPoint);
+        if(shapeFactory.appState.getActiveStartAndEndPointMode()== StartAndEndPointMode.DRAW) {
+            shapeCommand = new CreateShapeCommand(shapeFactory, shapeType, startPoint, endPoint);
         }
-        else if(shapeFactory.getAppState().getActiveStartAndEndPointMode()==StartAndEndPointMode.SELECT) {
+        else if(shapeFactory.appState.getActiveStartAndEndPointMode()==StartAndEndPointMode.SELECT) {
             shapeCommand = new SelectShapeCommand(shapeFactory, startPoint, endPoint);
         }
-        else if(shapeFactory.getAppState().getActiveStartAndEndPointMode()==StartAndEndPointMode.MOVE){
+        else if(shapeFactory.appState.getActiveStartAndEndPointMode()==StartAndEndPointMode.MOVE){
             System.out.println("Move functionality not implemented yet");   // still an error here, might need to implement MoveCommand from MouseReleased or error handle the shapeCommand.run() below
             Point newStartPoint = endPoint;
             Point newEndPoint = new Point(e.getX(), e.getY());
@@ -67,13 +67,9 @@ public class UseMouseHandler extends MouseAdapter {
         eventOutput("Mouse exited", e);
     }
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) { }
 
-    }
-
-    public void mouseDragged(MouseEvent e){
-
-    }
+    public void mouseDragged(MouseEvent e){ }
 
     private void eventOutput(String eventDescription, MouseEvent e) {
         System.out.println(eventDescription + " detected on "

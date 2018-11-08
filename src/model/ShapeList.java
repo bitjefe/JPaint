@@ -1,8 +1,8 @@
 package model;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.PriorityBlockingQueue;
+
 
 public class ShapeList{
 
@@ -20,11 +20,11 @@ public class ShapeList{
         drawShapeHandler.update(shapeList);
     }
 
+
     public void remove(){
         shapeList.remove(shapeList.size()-1);
-        drawShapeHandler.update(shapeList);
+        drawShapeHandler.update(shapeList);             //doesn't update the canvas until you click on canvas again
     }
-
 
     public int size(){
         int counter =0;

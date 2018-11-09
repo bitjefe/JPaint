@@ -13,13 +13,14 @@ public class JPaintController implements IJPaintController {
     private final IApplicationState applicationState;
     public ShapeList shapeList;
     public List<Shape> selectedShapeList;
-    public List<Shape> shapeListCopy = new ArrayList<>();
+    public List<Shape> copiedShapeList;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState, ShapeList shapeList, List<Shape> selectedShapeList) {
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState, ShapeList shapeList, List<Shape> selectedShapeList, List<Shape> copiedShapeList) {
         this.shapeList = shapeList;
         this.uiModule = uiModule;
         this.applicationState = applicationState;
         this.selectedShapeList = selectedShapeList;
+        this.copiedShapeList = copiedShapeList;
     }
 
     @Override
@@ -34,8 +35,10 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> applicationState.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(applicationState, shapeList).setup());//applicationState.DeleteCommand());
-        uiModule.addEvent(EventName.COPY, () -> new CopyCommand(selectedShapeList, shapeListCopy).setup());
-        uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(shapeListCopy).setup());
+        uiModule.addEvent(EventName.COPY, () -> new CopyCommand(selectedShapeList, copiedShapeList).setup());
+        uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(copiedShapeList).setup());
+
+        //do i need a commandHistory list here for undo redo?
         uiModule.addEvent(EventName.UNDO, () -> new UndoCommand().setup());
         uiModule.addEvent(EventName.REDO, () -> new RedoCommand().setup());
     }

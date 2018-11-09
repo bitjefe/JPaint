@@ -13,13 +13,17 @@ public class Shape {
     public Point endPoint;
     public int height, width;
     public int xMin, xMax, yMin, yMax, triangleMidPoint;
+    public ShapeColor primaryColor;
+    public ShapeColor secondaryColor;
 
 
-    public Shape(ShapeFactory shapeFactory, ShapeType shapeType, Point startPoint, Point endPoint) {
+    public Shape(ShapeFactory shapeFactory, ShapeType shapeType, Point startPoint, Point endPoint, ShapeColor primaryColor, ShapeColor secondaryColor) {
         this.shapeFactory = shapeFactory;
         this.shapeType = shapeType;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
 
         xMin = Math.min(startPoint.x, endPoint.x);
         xMax = Math.max(startPoint.x, endPoint.x);

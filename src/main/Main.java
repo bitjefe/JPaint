@@ -27,15 +27,17 @@ public class Main {
 
         ShapeList shapeList = new ShapeList(new DrawShapeHandler(paintCanvas));
         List<Shape> selectedShapeList = new ArrayList<>();
+        List<Shape> copiedShapeList = new ArrayList<>();
 
-        IJPaintController controller = new JPaintController(uiModule, appState,shapeList, selectedShapeList);
+        //do i need to instantiation a command history list here as well? Pass into JPaintController and ShapeFactory like the other 3 lists
+
+        IJPaintController controller = new JPaintController(uiModule, appState,shapeList, selectedShapeList, copiedShapeList);
 
         //create concrete implementation of factory interface, pass in appState and ShapeList
-        ShapeFactory shapeFactory = new ShapeFactory(appState, shapeList, selectedShapeList);
-        UseMouseHandler useMouseHandler = new UseMouseHandler(shapeFactory, shapeList);   //when refactored like this it draws all shapes in the shapeList every time for the new shape
+        ShapeFactory shapeFactory = new ShapeFactory(appState, shapeList, selectedShapeList, copiedShapeList);
 
-        // create new instance of UseMouseHandler class
-        //UseMouseHandler useMouseHandler = new UseMouseHandler(appState, shapeList);
+        // create new instance of UseMouseHandler class and pass in shapeFactory
+        UseMouseHandler useMouseHandler = new UseMouseHandler(shapeFactory);
 
         // add the UseMouseHandler class object to the Paint Canvas via addMouseListener()
         paintCanvas.addMouseListener(useMouseHandler);

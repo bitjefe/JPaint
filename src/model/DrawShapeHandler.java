@@ -28,16 +28,16 @@ public class DrawShapeHandler {
 
             if(shape.getShapeType().toString().equals("RECTANGLE")){
 
-
                 //this prints the statement in the ShapeFactory! now what to replace from here to there?
                 //shape.shapeFactory.createRectangle();
 
                 EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
-                ColorSingleton colorSingletonPrimary = ColorSingleton.getInstance(shape.getPrimaryColor(), colorMap);
-                ColorSingleton colorSingletonSecondary = ColorSingleton.getInstance(shape.getSecondaryColor(), colorMap);
 
-                primaryColorMapped = colorMap.get(shape.getPrimaryColor());
-                secondaryColorMapped = colorMap.get(shape.getSecondaryColor());
+                ColorSingleton colorSingletonPrimary = ColorSingleton.getInstance(shape.primaryColor,colorMap);
+                ColorSingleton colorSingletonSecondary = ColorSingleton.getInstance(shape.secondaryColor, colorMap);
+
+                primaryColorMapped = colorMap.get(shape.primaryColor);
+                secondaryColorMapped = colorMap.get(shape.secondaryColor);
 
                 graphics.setColor(primaryColorMapped);
                 graphics.fillRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
@@ -45,18 +45,40 @@ public class DrawShapeHandler {
                 graphics.setColor(secondaryColorMapped);
                 graphics.drawRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
 
-
-                //notes for Thursday night... will only draw colors on the first rectangle.. if i resize canvas the rectangles turn full black?
-
             }
             else if(shape.getShapeType().toString().equals("ELLIPSE")) {
-                graphics.draw(new Ellipse2D.Double(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight()));
+
+                EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
+
+                ColorSingleton colorSingletonPrimary = ColorSingleton.getInstance(shape.primaryColor,colorMap);
+                ColorSingleton colorSingletonSecondary = ColorSingleton.getInstance(shape.secondaryColor, colorMap);
+
+                primaryColorMapped = colorMap.get(shape.primaryColor);
+                secondaryColorMapped = colorMap.get(shape.secondaryColor);
+
+                graphics.setColor(primaryColorMapped);
+                graphics.fillOval(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
+
+                graphics.setColor(secondaryColorMapped);
+                graphics.drawOval(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
             }
             else if(shape.getShapeType().toString().equals("TRIANGLE")) {
 
                 int[] xCords = {shape.getXMin(), shape.getTriangleMidPoint(), shape.getXMax()};
                 int[] yCords = {shape.getYMax(), shape.getYMin(), shape.getYMax() };
 
+                EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
+
+                ColorSingleton colorSingletonPrimary = ColorSingleton.getInstance(shape.primaryColor,colorMap);
+                ColorSingleton colorSingletonSecondary = ColorSingleton.getInstance(shape.secondaryColor, colorMap);
+
+                primaryColorMapped = colorMap.get(shape.primaryColor);
+                secondaryColorMapped = colorMap.get(shape.secondaryColor);
+
+                graphics.setColor(primaryColorMapped);
+                graphics.fillPolygon(xCords, yCords, 3);
+
+                graphics.setColor(secondaryColorMapped);
                 graphics.drawPolygon(xCords, yCords, 3);
             }
             else{

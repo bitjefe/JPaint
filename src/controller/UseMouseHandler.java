@@ -26,9 +26,8 @@ public class UseMouseHandler extends MouseAdapter {
     }
     */
 
-    public UseMouseHandler(ShapeFactory shapeFactory, ShapeList shapeList) {
+    public UseMouseHandler(ShapeFactory shapeFactory) {
         this.shapeFactory = shapeFactory;
-        this.shapeList = shapeList;
     }
 
     public void mousePressed(MouseEvent e) {

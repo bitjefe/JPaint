@@ -21,7 +21,7 @@ public class CreateShapeCommand implements IShapeCommand {
     }
 
     public void run() {
-        Shape shape = new Shape(shapeFactory, shapeType, startPoint, endPoint);
+        Shape shape = new Shape(shapeFactory, shapeType, startPoint, endPoint, shapeFactory.appState.getActivePrimaryColor(), shapeFactory.appState.getActiveSecondaryColor());
         shapeFactory.shapeList.add(shape);
     }
 

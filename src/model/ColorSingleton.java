@@ -6,7 +6,7 @@ import java.util.EnumMap;
 public class ColorSingleton {
 
     private static ColorSingleton single_instance = null;
-    public EnumMap<ShapeColor, Color> colorMap;
+    public static EnumMap<ShapeColor, Color> colorMap;
     public ShapeColor shapeColor;
 
     public ColorSingleton(ShapeColor shapeColor, EnumMap<ShapeColor, Color> colorMap) {
@@ -28,11 +28,10 @@ public class ColorSingleton {
         this.colorMap.put(ShapeColor.YELLOW, Color.YELLOW);
     }
 
-    public static ColorSingleton getInstance(ShapeColor shapeColor,EnumMap<ShapeColor, Color>colorMap){
+    public static ColorSingleton getInstance(ShapeColor shapeColor, EnumMap<ShapeColor, Color> colorMap){
 
-        if(single_instance == null){
-            single_instance = new ColorSingleton(shapeColor, colorMap);
-        }
+        single_instance = new ColorSingleton(shapeColor, colorMap);
+
         return single_instance;
     }
 }

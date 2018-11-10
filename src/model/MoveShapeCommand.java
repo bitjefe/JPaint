@@ -1,22 +1,21 @@
 package model;
 
 import model.interfaces.IShapeCommand;
+import model.interfaces.IUndoable;
 
 import java.util.ArrayList;
 import java.awt.Point;
 import java.util.List;
 
-public class MoveShapeCommand implements IShapeCommand {
+public class MoveShapeCommand implements IShapeCommand, IUndoable {
 
     public Point newStartPoint;
     public Point newEndPoint;
-    public ShapeList shapeList;
-    public List<Shape> selectedShapeList;
+    public ShapeFactory shapeFactory;
 
 
-    public MoveShapeCommand(ShapeList shapeList, List<Shape> selectedShapeList, Point newStartPoint, Point newEndPoint){
-        this.shapeList = shapeList;
-        this.selectedShapeList = selectedShapeList;
+    public MoveShapeCommand(ShapeFactory shapeFactory, Point newStartPoint, Point newEndPoint){
+        this.shapeFactory = shapeFactory;
         this.newStartPoint = newStartPoint;
         this.newEndPoint = newEndPoint;
     }
@@ -29,7 +28,7 @@ public class MoveShapeCommand implements IShapeCommand {
     }
 
     private void move() {
-        for(Shape shape: selectedShapeList) {
+        for(Shape shape: shapeFactory.selectedShapeList) {
             int deltaX = (newEndPoint.x - newStartPoint.x);
             int deltaY = (newEndPoint.y - newStartPoint.y);
 

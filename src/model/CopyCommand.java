@@ -20,13 +20,13 @@ public class CopyCommand implements IJPaintController{
     @Override
     public void setup() {
         if(selectedShapeList!= null) {
-            copy(shapeList.masterShapeList);
+            copy(selectedShapeList);
         }
     }
 
-    public void copy(List<Shape> masterShapeList /*List<Shape> selectedShapeList*/){
+    public void copy(List<Shape> selectedShapeList){
         counter =1;
-        for(Shape shape: shapeList.masterShapeList){
+        for(Shape shape: selectedShapeList){
             shapeListCopy.add(shape);
         }
         System.out.println("CopyCommand function works");

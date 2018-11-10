@@ -6,13 +6,11 @@ import view.EventName;
 import view.gui.PaintCanvas;
 import view.interfaces.IUiModule;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
-    //public List<Shape>  masterShapeList;
     public ShapeList shapeList;
     public List<Shape> selectedShapeList;
     public List<Shape> copiedShapeList;

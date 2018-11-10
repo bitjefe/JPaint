@@ -1,14 +1,15 @@
 package model;
 
 import model.interfaces.IShapeCommand;
+import model.interfaces.IUndoable;
 
 import java.awt.*;
 import java.util.List;
 
-public class SelectShapeCommand implements IShapeCommand {
+public class SelectShapeCommand implements IShapeCommand, IUndoable {
 
     public ShapeFactory shapeFactory;
-    public List<Shape> selectedShapeList;
+    public List<Shape> selectedShapeList;    //add any functionality to delete shapes from selectedShapeList?
     public Point startPoint;
     public Point endPoint;
     public int x,y;
@@ -18,7 +19,6 @@ public class SelectShapeCommand implements IShapeCommand {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
     }
-
 
     @Override
     public void run() {

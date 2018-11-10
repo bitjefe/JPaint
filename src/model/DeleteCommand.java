@@ -25,7 +25,7 @@ public class DeleteCommand implements IJPaintController {
 
     public void delete(){
         int masterShapeListSize = shapeList.masterShapeList.size();
-        shapeList.masterShapeList.remove(masterShapeListSize-1);
+        shapeList.masterShapeList.remove(masterShapeListSize-1);        //add any functionality to delete shapes from selectedShapeList?
     }
 
 }

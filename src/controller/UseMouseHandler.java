@@ -47,10 +47,9 @@ public class UseMouseHandler extends MouseAdapter {
             shapeCommand = new SelectShapeCommand(shapeFactory, startPoint, endPoint);
         }
         else if(shapeFactory.appState.getActiveStartAndEndPointMode()==StartAndEndPointMode.MOVE){
-            System.out.println("Move functionality not implemented yet");   // still an error here, might need to implement MoveCommand from MouseReleased or error handle the shapeCommand.run() below
              newStartPoint = endPoint;
              newEndPoint = new Point(e.getX(), e.getY());
-            //shapeCommand = new MoveShapeCommand(shapeList, selectedShapeList, newStartPoint, newEndPoint);
+             shapeCommand = new MoveShapeCommand(shapeFactory, newStartPoint, newEndPoint);
         }
         shapeCommand.run();
     }

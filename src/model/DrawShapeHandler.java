@@ -2,11 +2,10 @@ package model;
 
 import view.gui.PaintCanvas;
 
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.EnumMap;
-import java.awt.Color;
 import java.util.List;
-import java.awt.Graphics2D;
 
 
 public class DrawShapeHandler {
@@ -23,6 +22,9 @@ public class DrawShapeHandler {
 
         System.out.println("shapeList has this many shapes = "+ masterShapeList.size());
         Graphics2D graphics = paintCanvas.getGraphics2D();
+
+        //Rectangle bounds = graphics.getDeviceConfiguration().getBounds();
+        //graphics.clearRect(bounds.x, bounds.y, bounds.width, bounds.height);
 
         for(Shape shape: masterShapeList){
 

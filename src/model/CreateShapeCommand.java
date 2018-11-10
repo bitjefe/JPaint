@@ -10,7 +10,6 @@ public class CreateShapeCommand implements IShapeCommand {
     public ShapeType shapeType;
     public Point startPoint;
     public Point endPoint;
-    public ShapeList shapeList;
     public Shape shape;
 
     public CreateShapeCommand(ShapeFactory shapeFactory, ShapeType shapeType, Point startPoint, Point endPoint) {
@@ -22,11 +21,12 @@ public class CreateShapeCommand implements IShapeCommand {
 
     public void run() {
         Shape shape = new Shape(shapeFactory, shapeType, startPoint, endPoint, shapeFactory.appState.getActivePrimaryColor(), shapeFactory.appState.getActiveSecondaryColor());
-        shapeFactory.shapeList.add(shape);
+        shapeFactory.shapeList.masterShapeList.add(shape);
+        shapeFactory.shapeList.drawShapeHandler.update(shapeFactory.shapeList.masterShapeList);
     }
 
     public void undo(){
-        shapeList.remove();
+        //shapeFactory.masterShapeList.remove();
         //call UndoCommand here?
     }
 
@@ -34,23 +34,6 @@ public class CreateShapeCommand implements IShapeCommand {
 
     }
 }
-
-    /*
-    public CreateShapeCommand(IApplicationState appState, ShapeList shapeList, ShapeType shapeType, Point startPoint, Point endPoint) {
-        this.appState = appState;
-        this.shapeType = shapeType;
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
-        this.shapeList = shapeList;
-    }
-    */
-
-    /*
-    public void run() {
-        Shape shape = new Shape(appState, shapeType, startPoint, endPoint);
-        shapeList.add(shape);
-    }
-    */
 
 
 

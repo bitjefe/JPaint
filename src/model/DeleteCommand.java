@@ -2,9 +2,6 @@ package model;
 
 import controller.IJPaintController;
 import model.interfaces.IApplicationState;
-import java.util.List;
-
-import java.util.ArrayList;
 
 public class DeleteCommand implements IJPaintController {
 
@@ -21,7 +18,14 @@ public class DeleteCommand implements IJPaintController {
     @Override
     public void setup() {
         System.out.println("delete button has been clicked!");
-        shapeList.remove();
+        delete();
+        shapeList.drawShapeHandler.paintCanvas.repaint();
+        shapeList.drawShapeHandler.update(shapeList.masterShapeList);
+    }
+
+    public void delete(){
+        int masterShapeListSize = shapeList.masterShapeList.size();
+        shapeList.masterShapeList.remove(masterShapeListSize-1);
     }
 
 }

@@ -13,12 +13,11 @@ import java.util.List;
 public class UseMouseHandler extends MouseAdapter {
 
     public ShapeFactory shapeFactory;
-    public IApplicationState appState;
     public ShapeType shapeType;
     public Point startPoint;
     public Point endPoint;
-    public ShapeList shapeList;
-    public List<Shape> selectedShapeList;
+    public Point newStartPoint;
+    public Point newEndPoint;
 
    /* public UseMouseHandler(IApplicationState applicationState, ShapeList shapeList) {
         this.appState = applicationState;
@@ -37,9 +36,7 @@ public class UseMouseHandler extends MouseAdapter {
     public void mouseReleased(MouseEvent e) {
 
         shapeType = shapeFactory.appState.getActiveShapeType();
-
-        Point endPoint = new Point(e.getX(), e.getY());
-        this.endPoint = endPoint;
+        endPoint = new Point(e.getX(), e.getY());
 
         IShapeCommand shapeCommand = null;
 
@@ -51,8 +48,8 @@ public class UseMouseHandler extends MouseAdapter {
         }
         else if(shapeFactory.appState.getActiveStartAndEndPointMode()==StartAndEndPointMode.MOVE){
             System.out.println("Move functionality not implemented yet");   // still an error here, might need to implement MoveCommand from MouseReleased or error handle the shapeCommand.run() below
-            Point newStartPoint = endPoint;
-            Point newEndPoint = new Point(e.getX(), e.getY());
+             newStartPoint = endPoint;
+             newEndPoint = new Point(e.getX(), e.getY());
             //shapeCommand = new MoveShapeCommand(shapeList, selectedShapeList, newStartPoint, newEndPoint);
         }
         shapeCommand.run();

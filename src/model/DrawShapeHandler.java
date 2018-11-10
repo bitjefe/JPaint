@@ -19,14 +19,14 @@ public class DrawShapeHandler {
         this.paintCanvas = paintCanvas;
     }
 
-    public void update(List<Shape> shapeList) {
+    public void update(List<Shape> masterShapeList) {
 
-        System.out.println("shapeList has this many shapes added = "+ shapeList.size());
+        System.out.println("shapeList has this many shapes = "+ masterShapeList.size());
         Graphics2D graphics = paintCanvas.getGraphics2D();
 
-        for(Shape shape: shapeList){
+        for(Shape shape: masterShapeList){
 
-            if(shape.getShapeType().toString().equals("RECTANGLE")){
+            if(shape.shapeType.toString().equals("RECTANGLE")){
 
                 //this prints the statement in the ShapeFactory! now what to replace from here to there?
                 //shape.shapeFactory.createRectangle();
@@ -46,7 +46,7 @@ public class DrawShapeHandler {
                 graphics.drawRect(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
 
             }
-            else if(shape.getShapeType().toString().equals("ELLIPSE")) {
+            else if(shape.shapeType.toString().equals("ELLIPSE")) {
 
                 EnumMap<ShapeColor,Color> colorMap = new EnumMap<>(ShapeColor.class);
 
@@ -62,7 +62,7 @@ public class DrawShapeHandler {
                 graphics.setColor(secondaryColorMapped);
                 graphics.drawOval(shape.getXMin(), shape.getYMin(), shape.getWidth(), shape.getHeight());
             }
-            else if(shape.getShapeType().toString().equals("TRIANGLE")) {
+            else if(shape.shapeType.toString().equals("TRIANGLE")) {
 
                 int[] xCords = {shape.getXMin(), shape.getTriangleMidPoint(), shape.getXMax()};
                 int[] yCords = {shape.getYMax(), shape.getYMin(), shape.getYMax() };

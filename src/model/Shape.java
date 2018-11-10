@@ -36,7 +36,14 @@ public class Shape {
         triangleMidPoint = (xMin)+((xMax-xMin)/2);
     }
 
-    public ShapeType getShapeType(){ return shapeType;}
+    public boolean containsPoint(int x, int y){
+        if(x>= startPoint.x && x<startPoint.x+width && y>startPoint.y && y <startPoint.y + height){
+            return true;
+        }
+        else
+            return false;
+    }
+
 
     public int getXMax(){ return xMax;}
 
@@ -51,14 +58,6 @@ public class Shape {
     public int getWidth(){ return width; }
 
     public int getTriangleMidPoint(){ return triangleMidPoint;}
-
-    public ShapeColor getPrimaryColor(){return shapeFactory.appState.getActivePrimaryColor();}
-
-    public ShapeColor getSecondaryColor(){return shapeFactory.appState.getActiveSecondaryColor();}
-
-    public ShapeShadingType getShadingType(){return shapeFactory.appState.getActiveShapeShadingType();}
-
-    public StartAndEndPointMode getStartAndEndPointMode(){return shapeFactory.appState.getActiveStartAndEndPointMode();}
 
 }
 

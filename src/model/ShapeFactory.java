@@ -25,14 +25,14 @@ public class ShapeFactory {
         if (appState.getActiveShapeType().toString().equals("RECTANGLE")) {
             System.out.println("You're trying to draw a rectangle!");
             if(appState.getActiveShapeShadingType().equals("FILLED_IN")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
             else if(appState.getActiveShapeShadingType().equals("OUTLINE")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
 
             else if(appState.getActiveShapeShadingType().equals("OUTLINE_AND_FILLED_IN")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
         }
     }
@@ -41,13 +41,13 @@ public class ShapeFactory {
         if (appState.getActiveShapeType().toString().equals("ELLIPSE")) {
             System.out.println("You're trying to draw a Ellipse!");
             if(appState.getActiveShapeShadingType().equals("FILLED_IN")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
             else if(appState.getActiveShapeShadingType().equals("OUTLINE")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
             else if(appState.getActiveShapeShadingType().equals("OUTLINE_AND_FILLED_IN")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
         }
     }
@@ -56,13 +56,13 @@ public class ShapeFactory {
         if (appState.getActiveShapeType().toString().equals("TRIANGLE")) {
             System.out.println("You're trying to draw a Triangle!");
             if(appState.getActiveShapeShadingType().equals("FILLED_IN")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
             else if(appState.getActiveShapeShadingType().equals("OUTLINE")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
             else if(appState.getActiveShapeShadingType().equals("OUTLINE_AND_FILLED_IN")){
-                shapeList.add(shape);
+                shapeList.masterShapeList.add(shape);
             }
         }
     }

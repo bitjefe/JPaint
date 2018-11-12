@@ -20,11 +20,8 @@ public class DrawShapeHandler {
 
     public void update(List<Shape> masterShapeList) {
 
-        System.out.println("shapeList has this many shapes = "+ masterShapeList.size());
+        //System.out.println("shapeList has this many shapes = "+ masterShapeList.size()+"\n");
         Graphics2D graphics = paintCanvas.getGraphics2D();
-
-        //Rectangle bounds = graphics.getDeviceConfiguration().getBounds();
-        //graphics.clearRect(bounds.x, bounds.y, bounds.width, bounds.height);
 
         for(Shape shape: masterShapeList){
 

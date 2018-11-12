@@ -18,12 +18,8 @@ public class UseMouseHandler extends MouseAdapter {
     public Point endPoint;
     public Point newStartPoint;
     public Point newEndPoint;
+    public Point draggedPoint;
 
-   /* public UseMouseHandler(IApplicationState applicationState, ShapeList shapeList) {
-        this.appState = applicationState;
-        this.shapeList = shapeList;
-    }
-    */
 
     public UseMouseHandler(ShapeFactory shapeFactory) {
         this.shapeFactory = shapeFactory;
@@ -41,26 +37,27 @@ public class UseMouseHandler extends MouseAdapter {
         IShapeCommand shapeCommand = null;
 
         if(shapeFactory.appState.getActiveStartAndEndPointMode()== StartAndEndPointMode.DRAW) {
+
+            //refactor to shapeFactory.getNewCreateShapeCommand();
+            //this will return newCreateShapeCommand(shapeList,appState): ??
             shapeCommand = new CreateShapeCommand(shapeFactory, shapeType, startPoint, endPoint);
         }
         else if(shapeFactory.appState.getActiveStartAndEndPointMode()==StartAndEndPointMode.SELECT) {
+
+            //refactor to shapeFactory.getNewSelectShapeCommand();
             shapeCommand = new SelectShapeCommand(shapeFactory, startPoint, endPoint);
         }
         else if(shapeFactory.appState.getActiveStartAndEndPointMode()==StartAndEndPointMode.MOVE){
-             newStartPoint = endPoint;
-             newEndPoint = new Point(e.getX(), e.getY());
-             shapeCommand = new MoveShapeCommand(shapeFactory, newStartPoint, newEndPoint);
+
+            //refactor to shapeFactory.getNewMoveShapeCommand();
+             shapeCommand = new MoveShapeCommand(shapeFactory, shapeType, startPoint, endPoint);
         }
         shapeCommand.run();
     }
 
-    public void mouseEntered(MouseEvent e) {
-        eventOutput("Mouse entered", e);
-    }
+    public void mouseEntered(MouseEvent e) {/*//eventOutput("Mouse entered", e);*/}
 
-    public void mouseExited(MouseEvent e) {
-        eventOutput("Mouse exited", e);
-    }
+    public void mouseExited(MouseEvent e) {/*eventOutput("Mouse exited", e);*/}
 
     public void mouseClicked(MouseEvent e) { }
 

@@ -14,6 +14,10 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
     public Point mouseReleased;
     public ShapeFactory shapeFactory;
     public List<Shape> movedShapeList = new ArrayList<>();
+    public List<Shape> shapeListBeforeMoved = new ArrayList<>();
+    public List<Shape> shapeListBeforeUndo = new ArrayList<>();
+    public int deltaX;
+    public int deltaY;
 
 
     public MoveShapeCommand(ShapeFactory shapeFactory, ShapeType shapeType, Point mousePressed, Point mouseReleased){
@@ -21,6 +25,8 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
         this.shapeType = shapeType;
         this.mousePressed = mousePressed;
         this.mouseReleased = mouseReleased;
+        deltaX= (mouseReleased.x - mousePressed.x);
+        deltaY = (mouseReleased.y - mousePressed.y);
     }
 
     @Override
@@ -29,20 +35,14 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
         pasteMoved(movedShapeList);
         shapeFactory.shapeList.drawShapeHandler.paintCanvas.repaint();
         shapeFactory.shapeList.drawShapeHandler.update(shapeFactory.shapeList.masterShapeList);
-
-        //CommandHistory.add(this)
+        CommandHistory.add(this);
     }
 
     private void move(List<Shape> masterShapeList) {
 
-        int deltaX = (mouseReleased.x - mousePressed.x);
-        int deltaY = (mouseReleased.y - mousePressed.y);
-
         for(Shape shape: masterShapeList) {
-            if(shape.containsPoint(mousePressed.x, mousePressed.y)){
 
-                System.out.println("Original startPoint = "+ shape.startPoint);
-                System.out.println("Original endPoint = "+ shape.endPoint);
+            if(shape.containsPoint(mousePressed.x, mousePressed.y)){
 
                 int newStartPointX = (shape.startPoint.x)+deltaX;
                 int newStartPointY = (shape.startPoint.y)+deltaY;
@@ -53,17 +53,9 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
                 Point newStartPoint = new Point(newStartPointX, newStartPointY);
                 Point newEndPoint = new Point(newEndPointX,newEndPointY);
 
-                System.out.println("shapeType = "+ shapeType);
-                System.out.println("newStartPoint = "+ newStartPoint);
-                System.out.println("newEndPoint = "+ newEndPoint);
-                System.out.println("primaryColor = "+ shape.primaryColor);
-                System.out.println("secondaryColor = "+ shape.secondaryColor);
-
-                Shape movedShape = new Shape(shapeFactory, shapeType, newStartPoint, newEndPoint, shape.primaryColor, shape.secondaryColor);
+                Shape movedShape = new Shape(shapeType, newStartPoint, newEndPoint, shape.primaryColor, shape.secondaryColor, shape.shadingType);
                 movedShapeList.add(shape);
                 movedShapeList.add(movedShape);
-
-                System.out.println("movedShapeList size = "+ movedShapeList.size());
             }
         }
     }
@@ -71,7 +63,7 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
     public void pasteMoved(List<Shape> movedShapeList) {
         for (Shape shape : movedShapeList) {
             if (!shapeFactory.shapeList.masterShapeList.contains(shape)) {
-                Shape movedShape = new Shape(shape.shapeFactory, shape.shapeType, shape.startPoint, shape.endPoint, shape.primaryColor, shape.secondaryColor);
+                Shape movedShape = new Shape(shape.shapeType, shape.startPoint, shape.endPoint, shape.primaryColor, shape.secondaryColor, shape.shadingType);
                 shapeFactory.shapeList.masterShapeList.add(movedShape);
             }
             else{
@@ -80,15 +72,56 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
         }
     }
 
-
     @Override
     public void undo() {
 
+        System.out.println("undo move shape run");
+
+        movedShapeList.clear();
+
+        for(Shape shape: shapeFactory.shapeList.masterShapeList) {
+
+            if(shape.containsPoint(mousePressed.x+deltaX, mousePressed.y+deltaY)) {
+
+                int newStartPointX = (shape.startPoint.x) - deltaX;
+                int newStartPointY = (shape.startPoint.y) - deltaY;
+
+                int newEndPointX = (shape.endPoint.x) - deltaX;
+                int newEndPointY = (shape.endPoint.y) - deltaY;
+
+                Point newStartPoint = new Point(newStartPointX, newStartPointY);
+                Point newEndPoint = new Point(newEndPointX, newEndPointY);
+
+                Shape removedShape = new Shape(shapeType, newStartPoint, newEndPoint, shape.primaryColor, shape.secondaryColor, shape.shadingType);
+                movedShapeList.add(removedShape);
+                shapeListBeforeUndo.add(shape);
+            }
+        }
+        pasteMoved(movedShapeList);
+
+        for(Shape shape: shapeListBeforeUndo){
+            if (shapeFactory.shapeList.masterShapeList.contains(shape)){
+                shapeFactory.shapeList.masterShapeList.remove(shape);
+            }
+        }
+
+        shapeFactory.shapeList.drawShapeHandler.paintCanvas.repaint();
+        shapeFactory.shapeList.drawShapeHandler.update(shapeFactory.shapeList.masterShapeList);
+
+    }
+
+    @Override
+    public void redo() {
+
+        // this redo() method will not run when i click redo button. only the redoCommand run() method in that class
+        System.out.println("redo move shape run");
+        move(shapeFactory.shapeList.masterShapeList);
+        pasteMoved(movedShapeList);
+        shapeFactory.shapeList.drawShapeHandler.paintCanvas.repaint();
+        shapeFactory.shapeList.drawShapeHandler.update(shapeFactory.shapeList.masterShapeList);
+        CommandHistory.redo();
     }
 
 
-    public void redo(){
-
-    }
 }
 

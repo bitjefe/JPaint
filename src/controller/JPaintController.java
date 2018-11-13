@@ -36,12 +36,12 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_SECONDARY_COLOR, () -> applicationState.setActiveSecondaryColor());
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> applicationState.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_START_POINT_ENDPOINT_MODE, () -> applicationState.setActiveStartAndEndPointMode());
-        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(applicationState, shapeList).setup());//applicationState.DeleteCommand());
-        uiModule.addEvent(EventName.COPY, () -> new CopyCommand(selectedShapeList, copiedShapeList, shapeList).setup());
-        uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(copiedShapeList, shapeList).setup());
+        uiModule.addEvent(EventName.DELETE, () -> new DeleteCommand(applicationState, shapeList).run());//applicationState.DeleteCommand());
+        uiModule.addEvent(EventName.COPY, () -> new CopyCommand(selectedShapeList, copiedShapeList, shapeList).run());
+        uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(copiedShapeList, shapeList).run());
 
         //do i need a commandHistory list here for undo redo?
-        uiModule.addEvent(EventName.UNDO, () -> new UndoCommand().setup());
-        uiModule.addEvent(EventName.REDO, () -> new RedoCommand().setup());
+        uiModule.addEvent(EventName.UNDO, () -> new UndoCommand(shapeList).run());
+        uiModule.addEvent(EventName.REDO, () -> new RedoCommand(shapeList).run());
     }
 }

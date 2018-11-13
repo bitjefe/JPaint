@@ -2,8 +2,10 @@ package model;
 
 import controller.IJPaintController;
 import model.interfaces.IApplicationState;
+import model.interfaces.IShapeCommand;
+import model.interfaces.IUndoable;
 
-public class DeleteCommand implements IJPaintController {
+public class DeleteCommand implements IShapeCommand, IUndoable {
 
     public IApplicationState appState;
     public ShapeList shapeList;
@@ -16,7 +18,7 @@ public class DeleteCommand implements IJPaintController {
     //doesn't update the canvas until you click on canvas again, but it does remove the shapes from shapeList
 
     @Override
-    public void setup() {
+    public void run() {
         System.out.println("delete button has been clicked!");
         delete();
         shapeList.drawShapeHandler.paintCanvas.repaint();
@@ -28,6 +30,15 @@ public class DeleteCommand implements IJPaintController {
         shapeList.masterShapeList.remove(masterShapeListSize-1);        //add any functionality to delete shapes from selectedShapeList?
     }
 
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void redo() {
+
+    }
 }
 
 

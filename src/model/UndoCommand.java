@@ -3,16 +3,30 @@ package model;
 import controller.IJPaintController;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeCommand;
+import model.interfaces.IUndoable;
 
 
-public class UndoCommand implements IJPaintController {
+public class UndoCommand implements IShapeCommand, IUndoable {
 
-    public UndoCommand(){
+    ShapeList shapeList;
+
+    public UndoCommand(ShapeList shapeList){
+        this.shapeList = shapeList;
     }
 
     @Override
-    public void setup() {
-        //shapeList.remove(Shape);  // what is this supposed to do?
+    public void run() {
+        undo();
+        System.out.println("Undo Command has been run");
+        shapeList.drawShapeHandler.paintCanvas.repaint();
+        shapeList.drawShapeHandler.update(shapeList.masterShapeList);
+        CommandHistory.add(this);
     }
+
+    @Override
+    public void undo() { CommandHistory.undo(); }
+
+    @Override
+    public void redo() { CommandHistory.redo();}
 
 }

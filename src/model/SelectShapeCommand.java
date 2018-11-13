@@ -9,7 +9,6 @@ import java.util.List;
 public class SelectShapeCommand implements IShapeCommand, IUndoable {
 
     public ShapeFactory shapeFactory;
-    public List<Shape> selectedShapeList;    //add any functionality to delete shapes from selectedShapeList?
     public Point startPoint;
     public Point endPoint;
     public int x,y;
@@ -35,7 +34,7 @@ public class SelectShapeCommand implements IShapeCommand, IUndoable {
                 shapeFactory.selectedShapeList.add(shape);
             }
         }
-        System.out.println("Selected ShapeList has this many shapes= " + shapeFactory.selectedShapeList.size());
+       // System.out.println("Selected ShapeList has this many shapes= " + shapeFactory.selectedShapeList.size());
     }
 
 

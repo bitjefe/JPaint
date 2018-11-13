@@ -1,9 +1,12 @@
 package model;
 
 import controller.IJPaintController;
+import model.interfaces.IShapeCommand;
+import model.interfaces.IUndoable;
+
 import java.util.List;
 
-public class CopyCommand implements IJPaintController{
+public class CopyCommand implements IShapeCommand {
 
     public ShapeList shapeList;
     public List<Shape> selectedShapeList;
@@ -18,7 +21,7 @@ public class CopyCommand implements IJPaintController{
     }
 
     @Override
-    public void setup() {
+    public void run() {
         if(selectedShapeList!= null) {
             copy(selectedShapeList);
         }

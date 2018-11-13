@@ -1,13 +1,15 @@
 package model;
 
+import model.interfaces.IUndoable;
+
 import java.util.Stack;
 
 
 public class CommandHistory {
-    private static final Stack<CommandHistory> undoStack = new Stack<CommandHistory>();
-    private static final Stack<CommandHistory> redoStack = new Stack<CommandHistory>();
+    private static final Stack<IUndoable> undoStack = new Stack<>();
+    private static final Stack<IUndoable> redoStack = new Stack<>();
 
-    public static void add(CommandHistory cmd) {
+    public static void add(IUndoable cmd) {
         undoStack.push(cmd);
         redoStack.clear();
     }
@@ -15,7 +17,7 @@ public class CommandHistory {
     public static boolean undo() {
         boolean result = !undoStack.empty();
         if (result) {
-            CommandHistory c = undoStack.pop();
+            IUndoable c = undoStack.pop();
             redoStack.push(c);
             c.undo();
         }
@@ -25,7 +27,7 @@ public class CommandHistory {
     public static boolean redo() {
         boolean result = !redoStack.empty();
         if (result) {
-            CommandHistory c = redoStack.pop();
+            IUndoable c = redoStack.pop();
             undoStack.push(c);
             c.redo();
         }
@@ -33,14 +35,14 @@ public class CommandHistory {
     }
 
     // For testing
-    CommandHistory topUndoCommand() {
+    IUndoable topUndoCommand() {
         if (undoStack.empty())
             return null;
         else
             return undoStack.peek();
     }
     // For testing
-    CommandHistory topRedoCommand() {
+    IUndoable topRedoCommand() {
         if (redoStack.empty())
             return null;
         else

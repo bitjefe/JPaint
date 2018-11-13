@@ -33,8 +33,6 @@ public class Main {
 
         ShapeList shapeList = new ShapeList(new DrawShapeHandler(paintCanvas), masterShapeList);
 
-        //do i need to instantiation a command history list here as well? Pass into JPaintController and ShapeFactory like the other 3 lists
-
         // can probably refactor this to take in shapeList instead of masterShapeList, then use shapeList.masterShapeList, can then remove paintcanvas and use
         // shapeList.drawShapeHandler.paintCanvas?
         IJPaintController controller = new JPaintController(uiModule, appState, shapeList, selectedShapeList, copiedShapeList, paintCanvas);

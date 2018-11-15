@@ -21,59 +21,9 @@ public class ShapeFactory {
         this.copiedShapeList = copiedShapeList;
     }
 }
-    /*
 
-    public Shape createRectangle() {
-        if (appState.getActiveShapeType().toString().equals("RECTANGLE")) {
-            System.out.println("You're trying to draw a rectangle!");
-            if(appState.getActiveShapeShadingType().equals("FILLED_IN")){
-              // what goes here?
-            }
-            else if(appState.getActiveShapeShadingType().equals("OUTLINE")){
 
-            }
 
-            else if(appState.getActiveShapeShadingType().equals("OUTLINE_AND_FILLED_IN")){
-
-            }
-        }
-        return null;
-
-    }
-
-    public Shape createEllipse() {
-        if (appState.getActiveShapeType().toString().equals("ELLIPSE")) {
-            System.out.println("You're trying to draw a Ellipse!");
-            if(appState.getActiveShapeShadingType().equals("FILLED_IN")){
-
-            }
-            else if(appState.getActiveShapeShadingType().equals("OUTLINE")){
-
-            }
-            else if(appState.getActiveShapeShadingType().equals("OUTLINE_AND_FILLED_IN")){
-
-            }
-        }
-        return null;
-    }
-
-    public Shape createTriangle() {
-        if (appState.getActiveShapeType().toString().equals("TRIANGLE")) {
-            System.out.println("You're trying to draw a Triangle!");
-            if(appState.getActiveShapeShadingType().equals("FILLED_IN")){
-
-            }
-            else if(appState.getActiveShapeShadingType().equals("OUTLINE")){
-
-            }
-            else if(appState.getActiveShapeShadingType().equals("OUTLINE_AND_FILLED_IN")){
-
-            }
-        }
-        return null;
-    }
-}
-*/
 
 
 

@@ -35,24 +35,22 @@ public class PasteCommand implements IShapeCommand, IUndoable {
             shape.endPoint.x = shape.endPoint.x+ 200;
             shape.endPoint.y = shape.endPoint.y+ 200;
 
-            Shape copiedShape = new Shape(shape.shapeType, shape.startPoint, shape.endPoint, shape.primaryColor, shape.secondaryColor, shape.shadingType);
+            Shape copiedShape = new Shape(shape.shapeType, shape.startPoint, shape.endPoint, shape.primaryColor, shape.secondaryColor, shape.shadingType, shape.clickType);
 
             shapeList.masterShapeList.add(copiedShape);
         }
 
 
-        System.out.println("ShapeList Copy has this many shapes= " + shapeListCopy.size());
-        System.out.println("MasterShapeList has this many shapes= " + shapeList.masterShapeList.size());
-       // System.out.println("PasteCommand function works");
+        System.out.println("Pasted "+shapeListCopy.size()+" shape(s)");
     }
 
     @Override
     public void undo() {
-
+        CommandHistory.undo();
     }
 
     @Override
     public void redo() {
-
+        run();
     }
 }

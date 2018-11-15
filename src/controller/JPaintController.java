@@ -7,6 +7,7 @@ import view.gui.PaintCanvas;
 import view.interfaces.IUiModule;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
@@ -15,13 +16,18 @@ public class JPaintController implements IJPaintController {
     public List<Shape> selectedShapeList;
     public List<Shape> copiedShapeList;
     public PaintCanvas paintCanvas;
+    public List<Shape> commandHistoryUndo;
+    public List<Shape> commandHistoryRedo;
 
-    public JPaintController(IUiModule uiModule, IApplicationState applicationState, ShapeList shapeList, List<Shape> selectedShapeList, List<Shape> copiedShapeList, PaintCanvas paintCanvas) {
+    public JPaintController(IUiModule uiModule, IApplicationState applicationState, ShapeList shapeList, List<Shape> selectedShapeList,
+                            List<Shape> copiedShapeList, List<Shape> commandHistoryUndo, List<Shape> commandHistoryRedo, PaintCanvas paintCanvas) {
         this.shapeList = shapeList;
         this.uiModule = uiModule;
         this.applicationState = applicationState;
         this.selectedShapeList = selectedShapeList;
         this.copiedShapeList = copiedShapeList;
+        this.commandHistoryUndo = commandHistoryUndo;
+        this.commandHistoryRedo = commandHistoryRedo;
         this.paintCanvas = paintCanvas;
     }
 
@@ -40,8 +46,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.COPY, () -> new CopyCommand(selectedShapeList, copiedShapeList, shapeList).run());
         uiModule.addEvent(EventName.PASTE, () -> new PasteCommand(copiedShapeList, shapeList).run());
 
-        //do i need a commandHistory list here for undo redo?
-        uiModule.addEvent(EventName.UNDO, () -> new UndoCommand(shapeList).run());
-        uiModule.addEvent(EventName.REDO, () -> new RedoCommand(shapeList).run());
+        uiModule.addEvent(EventName.UNDO, () -> new UndoCommand(shapeList,commandHistoryUndo, commandHistoryRedo).run());
+        uiModule.addEvent(EventName.REDO, () -> new RedoCommand(shapeList,commandHistoryUndo,commandHistoryRedo).run());
     }
 }

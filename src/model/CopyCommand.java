@@ -13,7 +13,6 @@ public class CopyCommand implements IShapeCommand {
     public List<Shape> shapeListCopy;
     int counter;
 
-    //where do i call this? is this correct setup?
     public CopyCommand(List<Shape> selectedShapeList, List<Shape> shapeListCopy, ShapeList shapeList){
         this.selectedShapeList = selectedShapeList;
         this.shapeListCopy = shapeListCopy;
@@ -32,7 +31,7 @@ public class CopyCommand implements IShapeCommand {
         for(Shape shape: selectedShapeList){
             shapeListCopy.add(shape);
         }
-        System.out.println("CopyCommand function works");
+        System.out.println("Copying "+selectedShapeList.size()+" shape(s)");
     }
 
 }

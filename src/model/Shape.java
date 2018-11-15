@@ -1,11 +1,9 @@
 package model;
 
-import model.interfaces.IApplicationState;
-
 import java.awt.Point;
 
 public class Shape {
-    public ShapeFactory shapeFactory;
+
     public ShapeList shapeList;
     public ShapeType shapeType;
     public Point startPoint;
@@ -15,15 +13,17 @@ public class Shape {
     public ShapeColor primaryColor;
     public ShapeColor secondaryColor;
     public ShapeShadingType shadingType;
+    public String clickType;
 
 
-    public Shape(ShapeType shapeType, Point startPoint, Point endPoint, ShapeColor primaryColor, ShapeColor secondaryColor, ShapeShadingType shadingType) {
+    public Shape(ShapeType shapeType, Point startPoint, Point endPoint, ShapeColor primaryColor, ShapeColor secondaryColor, ShapeShadingType shadingType, String clickType) {
         this.shapeType = shapeType;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.shadingType = shadingType;
+        this.clickType = clickType;
 
         xMin = Math.min(startPoint.x, endPoint.x);
         xMax = Math.max(startPoint.x, endPoint.x);
@@ -62,23 +62,3 @@ public class Shape {
 
 }
 
-
-
-    /*
-    public Shape(IApplicationState appState, ShapeType shapeType, Point startPoint, Point endPoint){
-        this.appState = appState;
-        this.shapeType = shapeType;
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
-
-        xMin = Math.min(startPoint.x, endPoint.x);
-        xMax = Math.max(startPoint.x, endPoint.x);
-
-        yMin = Math.min(startPoint.y, endPoint.y);
-        yMax = Math.max(startPoint.y, endPoint.y);
-
-        width = xMax-xMin;
-        height = yMax-yMin;
-        triangleMidPoint = (xMin)+((xMax-xMin)/2);
-    }
-    */

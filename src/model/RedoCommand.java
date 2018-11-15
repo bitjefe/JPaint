@@ -26,6 +26,7 @@ public class RedoCommand implements IShapeCommand, IUndoable {
         if(shapeList.masterShapeList.size()==0 && commandHistoryRedo.size()==0){
             System.out.println("No commands to redo");
         }
+
         else{
             int shapeUndoIndex = commandHistoryRedo.size()-1;
             Shape shapeUndo = commandHistoryRedo.get(shapeUndoIndex);

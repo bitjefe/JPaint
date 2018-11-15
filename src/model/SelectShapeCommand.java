@@ -6,7 +6,7 @@ import model.interfaces.IUndoable;
 import java.awt.*;
 import java.util.List;
 
-public class SelectShapeCommand implements IShapeCommand, IUndoable {
+public class SelectShapeCommand implements IShapeCommand {
 
     public ShapeFactory shapeFactory;
     public Point startPoint;
@@ -34,17 +34,5 @@ public class SelectShapeCommand implements IShapeCommand, IUndoable {
                 shapeFactory.selectedShapeList.add(shape);
             }
         }
-       // System.out.println("Selected ShapeList has this many shapes= " + shapeFactory.selectedShapeList.size());
-    }
-
-
-    @Override
-    public void undo() {
-
-    }
-
-
-    public void redo(){
-
     }
 }

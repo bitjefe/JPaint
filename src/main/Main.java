@@ -33,11 +33,11 @@ public class Main {
         List<Shape> commandHistoryUndo = new ArrayList<>();
         List<Shape> commandHistoryRedo = new ArrayList<>(); ;
 
+        //instantiate strategy object
         IShapeStrategy shapeStrategy=null;
 
         ShapeList shapeList = new ShapeList(new DrawShapeHandler(paintCanvas, shapeStrategy), masterShapeList, commandHistoryUndo, commandHistoryRedo);
 
-        // can probably refactor this to take in shapeList instead of masterShapeList, then use shapeList.masterShapeList, can then remove paintcanvas and use
         // shapeList.drawShapeHandler.paintCanvas?
         IJPaintController controller = new JPaintController(uiModule, appState, shapeList, selectedShapeList, copiedShapeList,commandHistoryUndo,commandHistoryRedo, paintCanvas);
 

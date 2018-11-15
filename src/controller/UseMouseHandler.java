@@ -28,7 +28,6 @@ public class UseMouseHandler extends MouseAdapter {
         shapeType = shapeFactory.appState.getActiveShapeType();
         endPoint = new Point(e.getX(), e.getY());
 
-        IShapeCommand shapeCommand = null;
 
         if(e.getButton() == MouseEvent.BUTTON1){
             clickType = "LEFT";
@@ -37,6 +36,8 @@ public class UseMouseHandler extends MouseAdapter {
         if(e.getButton() == MouseEvent.BUTTON3){
             clickType = "RIGHT";
         }
+
+        IShapeCommand shapeCommand = null;
 
         if(shapeFactory.appState.getActiveStartAndEndPointMode()== StartAndEndPointMode.DRAW) {
             shapeCommand = new CreateShapeCommand(shapeFactory, shapeType, startPoint, endPoint, clickType);

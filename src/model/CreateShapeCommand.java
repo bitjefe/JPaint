@@ -32,6 +32,10 @@ public class CreateShapeCommand implements IShapeCommand, IUndoable {
         CommandHistory.add(this);
     }
 
+    public int toSize(){
+        return shapeFactory.shapeList.masterShapeList.size();
+    }
+
     @Override
     public void undo(){
         CommandHistory.undo();

@@ -64,7 +64,7 @@ public class MoveShapeCommand implements IShapeCommand, IUndoable {
         }
     }
 
-    public void pasteMoved(List<Shape> movedShapeList) {
+    private void pasteMoved(List<Shape> movedShapeList) {
         for (Shape shape : movedShapeList) {
             if (!shapeFactory.shapeList.masterShapeList.contains(shape)) {
                 Shape movedShape = new Shape(shape.shapeType, shape.startPoint, shape.endPoint, shape.primaryColor, shape.secondaryColor, shape.shadingType, shape.clickType);

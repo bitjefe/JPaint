@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UndoCommand implements IShapeCommand, IUndoable {
 
-    ShapeList shapeList;
+    public ShapeList shapeList;
     public List<Shape> commandHistoryUndo;
     public List<Shape> commandHistoryRedo;
 
